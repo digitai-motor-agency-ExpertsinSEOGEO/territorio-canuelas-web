@@ -144,7 +144,7 @@ export default function Contact() {
                           className={inputClass(!!errors.name)}
                         />
                       </Field>
-                      <Field label="Teléfono" error={errors.phone?.message}>
+                      <Field label="Teléfono / WhatsApp" error={errors.phone?.message}>
                         <input
                           {...register('phone')}
                           placeholder="+54 9 2226 682560"
