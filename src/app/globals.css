@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Tierra (warm sandy brown) ── */
+  --color-tierra-50: #faf7f2;
+  --color-tierra-100: #f0e8d8;
+  --color-tierra-200: #e2d0b8;
+  --color-tierra-300: #cfb08e;
+  --color-tierra-400: #bc9065;
+  --color-tierra-500: #a8744a;
+  --color-tierra-600: #8e5e3c;
+  --color-tierra-700: #754d32;
+  --color-tierra-800: #5e3d28;
+  --color-tierra-900: #4a2f1e;
+
+  /* ── Oliva (olive green) ── */
+  --color-oliva-50: #f2f5eb;
+  --color-oliva-100: #e3ebd0;
+  --color-oliva-200: #c6d6a1;
+  --color-oliva-300: #a3bd6c;
+  --color-oliva-400: #84a247;
+  --color-oliva-500: #688534;
+  --color-oliva-600: #526929;
+  --color-oliva-700: #3f5220;
+  --color-oliva-800: #303e19;
+  --color-oliva-900: #232e12;
+
+  /* ── Crema (warm cream) ── */
+  --color-crema-50: #fefdf9;
+  --color-crema-100: #faf5ec;
+  --color-crema-200: #f3e9d4;
+  --color-crema-300: #e8d8b8;
+  --color-crema-400: #d9c49a;
+  --color-crema-500: #c7ad7e;
+
+  /* ── Dorado (gold accent) ── */
+  --color-dorado-300: #e8c96d;
+  --color-dorado-400: #d4a843;
+  --color-dorado-500: #b88a24;
+  --color-dorado-600: #9b7010;
+
+  /* ── Typography ── */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, serif;
+
+  /* ── Shadows ── */
+  --shadow-card: 0 4px 24px -4px rgba(74, 47, 30, 0.12);
+  --shadow-card-hover: 0 12px 40px -8px rgba(74, 47, 30, 0.22);
+  --shadow-modal: 0 24px 80px -12px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-crema-50);
+  color: var(--color-tierra-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+}
+
+/* Show default cursor on touch devices */
+@media (hover: none) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-crema-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-tierra-300);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-tierra-500);
+}
+
+/* ── Selection ── */
+::selection {
+  background-color: var(--color-oliva-200);
+  color: var(--color-oliva-900);
+}
+
+/* ── Utility classes ── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.section-padding {
+  padding-top: clamp(4rem, 8vw, 7rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.container-xl {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 5vw, 3rem);
+  padding-right: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ── Focus ring ── */
+:focus-visible {
+  outline: 2px solid var(--color-oliva-500);
+  outline-offset: 2px;
+}
+
+/* ── Grain texture ── */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+}
