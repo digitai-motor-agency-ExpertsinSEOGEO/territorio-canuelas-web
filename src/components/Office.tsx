@@ -54,7 +54,7 @@ const info: InfoItem[] = [
   {
     icon: Phone,
     label: 'Teléfono / WhatsApp',
-    value: '+54 9 2226 40-0000',
+    value: '+54 9 2226 682560',
     sub: 'Respondemos en minutos',
     href: 'https://wa.me/5492226682560?text=Hola%2C%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20proyectos.',
   },
