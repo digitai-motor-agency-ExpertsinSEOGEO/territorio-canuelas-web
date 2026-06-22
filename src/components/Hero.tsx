@@ -1,39 +1,14 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import Image from 'next/image'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { BLUR_DATA_URL } from '@/lib/utils'
-
-const slides = [
-  {
-    src: '/images/hero/1.jpg',
-    alt: 'Territorio Cañuelas — campo y tranquilidad',
-  },
-  {
-    src: '/images/hero/2.jpg',
-    alt: 'Vivir con verde, aire puro y espacio',
-  },
-  {
-    src: '/images/hero/3.jpg',
-    alt: 'Desarrollos para construir tu hogar ideal',
-  },
-]
 
 export default function Hero() {
-  const [currentSlide, setCurrentSlide] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
   const textY = useTransform(scrollY, [0, 600], [0, 80])
   const opacity = useTransform(scrollY, [0, 400], [1, 0])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     <section
@@ -41,32 +16,21 @@ export default function Hero() {
       ref={containerRef}
       className="relative h-screen min-h-[600px] overflow-hidden"
     >
-      {/* Background image slider */}
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={slides[currentSlide].src}
-            alt={slides[currentSlide].alt}
-            fill
-            className="object-cover object-center"
-            priority
-            sizes="100vw"
-            placeholder="blur"
-            blurDataURL={BLUR_DATA_URL}
-          />
-        </motion.div>
-      </AnimatePresence>
+      {/* Video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/images/proyectos/uribelarra/3.jpg"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      >
+        <source src="/videos/territorio.mp4" type="video/mp4" />
+      </video>
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/70 z-10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent z-10" />
+      {/* Gradient overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/65 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/25 to-transparent z-10" />
 
       {/* Content */}
       <motion.div
@@ -122,27 +86,6 @@ export default function Hero() {
           >
             Hablar con un asesor
           </a>
-        </motion.div>
-
-        {/* Slide indicators */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3 }}
-          className="absolute bottom-28 left-1/2 -translate-x-1/2 flex gap-2"
-        >
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
-              className="h-0.5 rounded-full transition-all duration-500 bg-white"
-              style={{
-                width: i === currentSlide ? 28 : 12,
-                opacity: i === currentSlide ? 1 : 0.4,
-              }}
-              aria-label={`Imagen ${i + 1}`}
-            />
-          ))}
         </motion.div>
       </motion.div>
 
