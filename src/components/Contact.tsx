@@ -78,7 +78,7 @@ export default function Contact() {
             <div className="space-y-3">
               {[
                 'Asesoramiento personalizado sin costo',
-                'Respondemos en menos de 24 horas',
+                'Respondemos en minutos',
                 'Visita al campo sin compromiso',
                 'Financiación accesible disponible',
               ].map((item) => (
@@ -147,7 +147,7 @@ export default function Contact() {
                       <Field label="Teléfono" error={errors.phone?.message}>
                         <input
                           {...register('phone')}
-                          placeholder="+54 9 ..."
+                          placeholder="+54 9 2226 682560"
                           type="tel"
                           className={inputClass(!!errors.phone)}
                         />
